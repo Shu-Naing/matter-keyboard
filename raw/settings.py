@@ -29,8 +29,15 @@ SECRET_KEY = 'django-insecure-3%si78p0ub8w0#9cpls8+21=%tnf1#a#w1u6-oa7_r93qw8dpe
 DEBUG = True
 
 # ALLOWED_HOSTS = ['192.168.8.109']
+<<<<<<< HEAD
 # ALLOWED_HOSTS = []
 ALLOWED_HOSTS = ['2d10-45-41-104-89.ngrok-free.app']
+=======
+ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['0c65-37-111-44-67.ngrok-free.app']
+
+# https://0c65-37-111-44-67.ngrok-free.app
+>>>>>>> 3b7dff82a9ad576ed89b291716cb51ad7c93c370
 
 # Application definition
 
