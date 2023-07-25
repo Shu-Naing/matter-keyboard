@@ -121,7 +121,7 @@ def chatbot_api(request):
         'model': 'gpt-3.5-turbo',
         'messages': [{'role': 'system', 'content': 'You are a helpful assistant.'},
                      {'role': 'user', 'content': prompt}]
-    }, headers={'Authorization': 'Bearer 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'})
+    }, headers={'Authorization': 'Bearer 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'})
 
     answer = response.json()['choices'][0]['message']['content']
     print(answer)
@@ -150,9 +150,8 @@ def chatbot_api(request):
 def check_device(request):
     device_id = request.data.get('device_id')
     token = request.data.get('token')
-    client_data = request.data.get('data') or {}  # Assign an empty dictionary if client_data is None
+    client_data = request.data.get('data') or {}
 
-    # Perform the matching check
     try:
         device = Device.objects.get(device_id=device_id, token=token)
     except Device.DoesNotExist:
@@ -162,11 +161,9 @@ def check_device(request):
         }
         return Response(response_data, status=400)
 
-    # Save the device_id, token, and client_data to the database
     new_device = CheckDevice(device_id=device_id, token=token, client_data=client_data, timestamp=timezone.now())
     new_device.save()
 
-    # Return the response with the JSON data and timestamp
     response_data = {
         'status': '200 OK',
         'message': 'Device ID and token match.',
@@ -183,7 +180,6 @@ def api(request):
     if text is None:
         return JsonResponse({"error": "No 'text' provided."}, status=400)
 
-    # Load Model (change with your specified path of model file)
     model_path = "/home/mat/Project/Modal/ggml-gpt4all-j-v1.3-groovy.bin"
     model = gp.GPT4All(model_path)
 
@@ -194,10 +190,8 @@ def api(request):
 
     lines = output.strip().split("\n")
     formatted_output = {i: line.split(".")[1].strip() for i, line in enumerate(lines)}
-    # Remove backslashes from keys and values
     formatted_output = {int(k): v.strip('"\\"') for k, v in formatted_output.items()}
 
-    # Save the request and response to the database
     request_response = RequestResponse.objects.create(
         request_text=text,
         response_text=json.dumps(formatted_output)
