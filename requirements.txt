@@ -83,6 +83,3 @@ websocket-client==1.6.1
 Werkzeug==2.3.6
 widgetsnbextension==4.0.7
 xdg==5
-xkit==0.0.0
-yarl==1.8.2
-zipp==1.0.0
