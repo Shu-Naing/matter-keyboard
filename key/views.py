@@ -121,9 +121,14 @@ def chatbot_api(request):
         'model': 'gpt-3.5-turbo',
         'messages': [{'role': 'system', 'content': 'You are a helpful assistant.'},
                      {'role': 'user', 'content': prompt}]
-    }, headers={'Authorization': 'Bearer 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'})
+    }, headers={'Authorization': 'Bearer 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'})
 
-    answer = response.json()['choices'][0]['message']['content']
+    try:
+        # Access the 'choices' key
+        answer = response.json()['choices'][0]['message']['content']
+    except KeyError:
+        return Response({'error': 'Invalid response from the OpenAI API'}, status=500)
+
     print(answer)
 
     lines = answer.strip().split("\n")
@@ -144,6 +149,7 @@ def chatbot_api(request):
         'alternatives': formatted_output
     }
     return Response(response_data, status=200)
+
 
 
 @api_view(['POST'])
