@@ -31,7 +31,6 @@ defusedxml==0.7.1
 distro==1.7.0
 Django==4.2.3
 djangorestframework==3.14.0
-duplicity==0.8.21
 EasyProcess==1.1
 entrypoint2==1.1
 exceptiongroup==1.1.1
