@@ -124,7 +124,6 @@ def chatbot_api(request):
     }, headers={'Authorization': 'Bearer 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'})
 
     try:
-        # Access the 'choices' key
         answer = response.json()['choices'][0]['message']['content']
     except KeyError:
         return Response({'error': 'Invalid response from the OpenAI API'}, status=500)
